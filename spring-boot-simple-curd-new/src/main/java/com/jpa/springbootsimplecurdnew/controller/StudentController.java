@@ -1,5 +1,7 @@
 package com.jpa.springbootsimplecurdnew.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,11 @@ public class StudentController {
 		return studentDao.getStudentByIdDao(id);
 	}
 	
+	@GetMapping("/getAllStudent")
+	public List<Student> getAllStudentController(){
+		return studentDao.getAllStudentDao();
+	}
+	
 	@DeleteMapping("/deleteStudentById/{id}")
 	public String deleteByIdController(@PathVariable int id) {
 		boolean bol= studentDao.deleteByIdDao(id);
@@ -36,6 +43,16 @@ public class StudentController {
 			return "Id is not present";
 		}
 	}
+
+	@DeleteMapping("/deleteAllStudent")
+	public String deleteAllStudentDao() {
+		boolean bol =studentDao.deleteAllStudentDao();
+		if(bol) {
+			return " All data is deleted ";
+		}else {
+			return "No data found";
+		}
+}
 	
 	@PutMapping("/updateStudentById/{id}")
 	public Student updateStudentByIdController(@RequestBody Student student) {

@@ -1,5 +1,6 @@
 package com.jpa.springbootsimplecurdnew.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,15 @@ public class StudentDao {
 		}
 	}
 	
+	public List<Student> getAllStudentDao(){
+		List<Student> sdnt = studentRepository.findAll();
+		if(sdnt != null) {
+			return sdnt;
+		}else {
+			return null;
+		}
+	}
+	
 	public boolean deleteByIdDao(int id) {
 		Student student= getStudentByIdDao(id);
 		if(student != null) {
@@ -34,6 +44,16 @@ public class StudentDao {
 		}else {
 			return false;
 		}
+	}
+	
+	public boolean deleteAllStudentDao() {
+			List<Student> std = getAllStudentDao();
+			if(std != null) {
+				studentRepository.deleteAll(std);
+				return true;
+			}else {
+				return false;
+			}
 	}
 	
 	public Student updateStudentByIdDao(Student student) {
@@ -45,4 +65,5 @@ public class StudentDao {
 			return null;
 		}
 	}
+	
 }
