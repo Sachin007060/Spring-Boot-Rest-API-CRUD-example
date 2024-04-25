@@ -1,0 +1,28 @@
+package com.jpa.springbootsimplecurdnew.dao;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.jpa.springbootsimplecurdnew.dto.Employ;
+import com.jpa.springbootsimplecurdnew.repository.EmployRepository;
+
+@Repository
+public class EmployDao {
+	@Autowired
+	private EmployRepository employRepository;
+	
+	public Employ saveEmployDao(Employ employ) {
+		return employRepository.save(employ);
+	}
+	
+	public Employ getEmployByIdDao(Integer id) {
+	 Optional<Employ> employ=employRepository.findById(id);
+	 if(employ.isPresent()) {
+		 return employ.get();
+	 }else {
+		 return null;
+	 }
+	}
+}

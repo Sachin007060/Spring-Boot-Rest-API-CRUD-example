@@ -1,0 +1,5 @@
+package com.jpa.springbootsimplecurdnew.controller;
+
+public class StudentController {
+
+}

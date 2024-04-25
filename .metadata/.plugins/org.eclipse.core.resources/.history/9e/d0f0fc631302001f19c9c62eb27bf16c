@@ -1,0 +1,20 @@
+package com.jpa.springbootsimplecurdnew.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpa.springbootsimplecurdnew.dao.StudentDao;
+import com.jpa.springbootsimplecurdnew.dto.Student;
+
+@RestController
+public class StudentController {
+	@Autowired
+	private StudentDao studentDao;
+	
+	@PostMapping("/saveStudent")
+	public Student saveStudentDao(@RequestBody Student student) {
+		return studentDao.saveStudentDao(student);
+	}
+}

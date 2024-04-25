@@ -1,0 +1,5 @@
+package com.jpa.springbootsimplecurdnew.dto;
+
+public class Student {
+
+}

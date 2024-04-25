@@ -1,0 +1,28 @@
+package com.jpa.springbootsimplecurdnew.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpa.springbootsimplecurdnew.dao.EmployDao;
+import com.jpa.springbootsimplecurdnew.dto.Employ;
+
+@RestController
+public class EmployController {
+	@Autowired
+	private EmployDao employDao;
+	
+	@PostMapping(value = "/saveEmploy")
+	public Employ saveEmployController(@RequestBody Employ employ) {
+		return employDao.saveEmployDao(employ);
+	}
+	
+	@GetMapping("/getEmployById/{id}")
+	public Employ getEmployByIdController(@PathVariable Integer id) {
+		return employDao.getEmployByIdDao(id);
+	}
+	
+}

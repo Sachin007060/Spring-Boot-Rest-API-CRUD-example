@@ -1,0 +1,39 @@
+package com.jpa.springbootsimplecurdnew.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpa.springbootsimplecurdnew.dao.StudentDao;
+import com.jpa.springbootsimplecurdnew.dto.Student;
+
+@RestController
+public class StudentController {
+	@Autowired
+	private StudentDao studentDao;
+	
+	@PostMapping("/saveStudent")
+	public Student saveStudentController(@RequestBody Student student) {
+		return studentDao.saveStudentDao(student);
+	}
+	
+	@GetMapping("/getStudentById/{id}")
+	public Student getStudentByIdController(@PathVariable Integer id) {
+		return studentDao.getStudentByIdDao(id);
+	}
+	
+	@DeleteMapping("/deleteStudentById")
+	public boolean deleteByIdController(int id) {
+		Student student= getStudentByIdDao(id);
+		if(student != null) {
+			studentRepository.delete(student);
+			return true;
+		}else {
+			return false;
+		}
+	}
+}
